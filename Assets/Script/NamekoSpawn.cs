@@ -16,7 +16,12 @@ public class NamekoSpawn : MonoBehaviour
     [Header("Item")]
     public ItemManager itemManager;
     private float spawnTime = 0f;
-    
+
+    [Header("NamekoSpawnProbability")]
+    [SerializeField]
+    private float[] spawnProbability;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +60,8 @@ public class NamekoSpawn : MonoBehaviour
                 Transform spawnLocation = activespawnPrefabList[spawnPointIndex];  // 선택한 스폰 위치 가져옴
                 activespawnPrefabList.RemoveAt(spawnPointIndex);  // 선택한 위치를 사용 가능한 위치 리스트에서 제거
 
-                int NamekoIndex = Random.Range(0, Nameko.Length);  // 랜덤한 나메코를 선택
+                //int NamekoIndex = Random.Range(0, Nameko.Length);  // 랜덤한 나메코를 선택
+                int NamekoIndex = SelectIndexProbability(spawnProbability);
                 GameObject nameko = Instantiate(Nameko[NamekoIndex], spawnLocation.transform.position, Quaternion.identity);  // 나메코를 생성
 
                 /*
@@ -70,4 +76,28 @@ public class NamekoSpawn : MonoBehaviour
         }
 
     }
+
+    private int SelectIndexProbability(float[] probabilities)
+    {
+        float total = 0;
+        foreach (float pro in probabilities)
+        {
+            total += pro; //모든 확률 값을 합침
+        }
+
+        float randomPorint = Random.value * total; //0과 1사이의 랜덤값을 total과 곱하여 0부터 total까지의 랜덤값을 얻음
+
+        for(int i=0; i < probabilities.Length; i++) //확률 배열 순회
+        {
+            if(randomPorint < probabilities[i]) //랜덤값이 현재 확률보다 작으면 현재 인덱스 반환.->랜덤값이 현재 확률범위에 속함
+            {
+                return i;
+            }
+            else
+            {
+                randomPorint -= probabilities[i]; //랜덤값에서 현재 확률값을 뺌 -> 랜덤값을 다음 확률 범위로 이동
+            }
+        }
+        return probabilities.Length-1;
+    } //확률 값이 큰 인덱스일수록 더 자주 선택됨
 }

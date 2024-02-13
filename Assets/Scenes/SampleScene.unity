@@ -716,6 +716,9 @@ MonoBehaviour:
   - {fileID: 6231165488293426793, guid: a2559d3b62cbebc4fa4df718ea11ad7c, type: 3}
   - {fileID: 3369431249665775259, guid: 3e00532e0418068459d0af1faeace5c3, type: 3}
   itemManager: {fileID: 2045125361}
+  spawnProbability:
+  - 8
+  - 2
 --- !u!212 &1017877448
 SpriteRenderer:
   m_ObjectHideFlags: 0
