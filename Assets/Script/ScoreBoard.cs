@@ -1,0 +1,59 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class ScoreBoard : MonoBehaviour
+{
+    [Header("NamekoHarvestedCount")]
+    public TextMeshProUGUI Nameko0;  // id 0의 나메코 수확 개수를 표시하는 TextMeshProUGUI
+    public TextMeshProUGUI Nameko1;  // id 1 
+
+    //나메코 종류에 따른 id와 수확갯수를 dictionary를 통해 저장
+    private Dictionary<int, int> harvestedCount = new Dictionary<int, int>();
+
+    private void OnEnable()
+    {
+        Nameko.OnNamekoHarvested += UpdateScore;
+    }
+
+    private void OnDisable()
+    {
+        Nameko.OnNamekoHarvested -= UpdateScore;
+    }
+
+    private void UpdateScore(int id)
+    {
+        if(harvestedCount.ContainsKey(id))
+        {
+            harvestedCount[id] += 1;
+        }
+        else
+        {
+            harvestedCount[id] = 1;
+        }
+
+        //harvestedCount[id]에 수확 갯수 저장
+        switch (id)
+        {
+            case 0:
+                Nameko0.text = "ID 0: " + harvestedCount[id];
+                break;
+            case 1:
+                Nameko1.text = "ID 1: " + harvestedCount[id];
+                break;
+        }
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
