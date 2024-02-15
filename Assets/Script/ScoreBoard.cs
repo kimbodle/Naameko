@@ -23,7 +23,7 @@ public class ScoreBoard : MonoBehaviour
         Nameko.OnNamekoHarvested -= UpdateScore;
     }
 
-    private void UpdateScore(int id)
+    private void UpdateScore(int id, Transform spawnLocation)
     {
         if(harvestedCount.ContainsKey(id))
         {
