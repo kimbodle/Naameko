@@ -29,8 +29,7 @@ public class GameManager : MonoBehaviour
         }
 
         NamekoDictionary[id] += 1;
-        Debug.Log("나메코 수확 1올라감");
-        Debug.Log(NamekoDictionary[id]);
+        Debug.Log(id + ",나메코 수확 1올라감. 총" + NamekoDictionary[id]);
     }
     // Start is called before the first frame update
     void Start()

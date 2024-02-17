@@ -9,7 +9,8 @@ public class Nameko : MonoBehaviour
     public delegate void NamekoHarvestedDelegate(int id,int Np, Transform transform);
     public static event NamekoHarvestedDelegate OnNamekoHarvested;
 
-    public int id;
+    [SerializeField]
+    private int id;
     public int Np;
 
     private void OnMouseDown()
