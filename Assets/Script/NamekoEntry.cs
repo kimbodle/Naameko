@@ -11,6 +11,7 @@ public class NamekoEntry : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI countText;
     public TextMeshProUGUI descriptionText;
+    public TextMeshProUGUI DetailCountText;
     public Image namekoImage;
 
     public GameObject detailPanel;  // 나메코의 상세 정보를 표시하는 패널
@@ -23,6 +24,7 @@ public class NamekoEntry : MonoBehaviour
             namekoImage.enabled = true;
             nameText.enabled = true;
             descriptionText.enabled = true;
+            DetailCountText.text = count.ToString();
         }
         else
         {

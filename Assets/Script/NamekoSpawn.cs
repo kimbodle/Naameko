@@ -91,9 +91,9 @@ public class NamekoSpawn : MonoBehaviour
 
     }
 
-    void OnNamekoHarvestedPlace(int id, Transform spawnLocation)
+    void OnNamekoHarvestedPlace(int id,int Np, Transform spawnLocation)
     {
-        Debug.Log(spawnLocation.position.ToString());
+        //Debug.Log(spawnLocation.position.ToString());
         if (spawnedNamekos.ContainsKey(spawnLocation.position.ToString()))
         {
             Debug.Log("수확된 나메코의 위치를 지우고 스폰위치를 다시 활성화.");
