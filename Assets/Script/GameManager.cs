@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public Dictionary<int, int> NamekoDictionary = new Dictionary<int, int>();
+    private int totalNp = 0;
 
     private void Awake()
     {
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void HarvestNameko(int id)
+    public void HarvestNameko(int id, int np)
     {
         if (!NamekoDictionary.ContainsKey(id))
         {
@@ -29,17 +30,24 @@ public class GameManager : MonoBehaviour
         }
 
         NamekoDictionary[id] += 1;
-        Debug.Log(id + ",나메코 수확 1올라감. 총" + NamekoDictionary[id]);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        totalNp += np;
+        Debug.Log(id + ": 나메코 수확 총" + NamekoDictionary[id]);
     }
 
-    // Update is called once per frame
-    void Update()
+    public int GetTotalNp()
     {
-        
+        return totalNp;
+    }
+    
+    public int GetNamekoCount(int id)
+    {
+        if (NamekoDictionary.ContainsKey(id))
+        {
+            return NamekoDictionary[id];
+        }
+        else
+        {
+            return 0;
+        }
     }
 }

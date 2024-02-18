@@ -15,12 +15,14 @@ public class Nameko : MonoBehaviour
 
     private void OnMouseDown()
     {
+
+        //수확
+        GameManager.Instance.HarvestNameko(id, Np);  // 나메코 수확 정보를 업데이트
+        
         //버튼 UI가 아닌 오브젝트이기 때문에 OnMouseDown()사용
         //이벤트 발생
         OnNamekoHarvested?.Invoke(id, Np, transform);
-
-        //수확
-        GameManager.Instance.HarvestNameko(id);  // 나메코 수확 정보를 업데이트
+        
         Destroy(gameObject,0.5f);
     }
 }

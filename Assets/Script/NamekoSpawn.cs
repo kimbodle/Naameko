@@ -23,12 +23,14 @@ public class NamekoSpawn : MonoBehaviour
     [SerializeField]
     private float[] spawnProbability;
 
+    [SerializeField]
+    public GameObject parentObject; //하이라키
 
     // Start is called before the first frame update
     void Start()
     {
         activespawnPrefabList = new List<Transform>(spawnPrefab);  // 처음은 모든 위치에서 스폰
-        StartCoroutine(SpawnNameko());
+        
     }
 
     // Update is called once per frame
@@ -41,17 +43,19 @@ public class NamekoSpawn : MonoBehaviour
         else if (itemManager.is15)
         {
             spawnTime = 60f;
-        }
+        } //시간 아이템 마다 스폰 속도가 다름. 아이템에 따라 시간 조절
        
     }
     void OnEnable()
     {
         Nameko.OnNamekoHarvested += OnNamekoHarvestedPlace; //이벤트 구독 호출
+        StartCoroutine(SpawnNameko());
     }
 
     void OnDisable()
     {
         Nameko.OnNamekoHarvested -= OnNamekoHarvestedPlace;
+        StopCoroutine(SpawnNameko());  // Coroutine 중지
     }
 
     IEnumerator SpawnNameko()
@@ -64,7 +68,7 @@ public class NamekoSpawn : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval); //일정 시간 기다림
             //Debug.Log("스폰 기다림");
 
-            if (activespawnPrefabList.Count > 0)  //스폰 가능한 위치가 있을때만 나메코 생성
+            if (activespawnPrefabList.Count > 0 && itemManager.SpawnOk == true)  //스폰 가능한 위치가 있을때만 나메코 생성
             {
                 //Debug.Log("스폰위치 있음");
                 int spawnPointIndex = Random.Range(0, activespawnPrefabList.Count);  //사용가능한 스폰위치 중 랜덤 선택
@@ -78,12 +82,12 @@ public class NamekoSpawn : MonoBehaviour
                     //int NamekoIndex = Random.Range(0, Nameko.Length);  // 랜덤한 나메코를 선택
                     int NamekoIndex = SelectIndexProbability(spawnProbability);
 
-                    GameObject nameko = Instantiate(Namekos[NamekoIndex], spawnLocation.transform.position, Quaternion.identity);  // 나메코 생성
+                    GameObject nameko = Instantiate(Namekos[NamekoIndex], spawnLocation.transform.position, Quaternion.identity, parentObject.transform);  // 나메코 생성
 
                     spawnedNamekos.Add(spawnLocation.position.ToString(), spawnLocation);
                     // 나메코 생성 위치와 생성된 나메코를 Dictionary에 추가
 
-                    Debug.Log(spawnLocation.position.ToString());
+                    //Debug.Log(spawnLocation.position.ToString());
                     Debug.Log("스폰된 나메코의 위치를 spawnedNamekos에 추가. 현재 나메코 갯수: " + spawnedNamekos.Count);
                 }
             }
