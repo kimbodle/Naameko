@@ -18,12 +18,12 @@ public class ScoreBoard : MonoBehaviour
 
     private void OnEnable()
     {
-        Nameko.OnNamekoHarvested += UpdateScore;
+        HavestEventManager.OnNamekoHarvested += UpdateScore;
     }
 
     private void OnDisable()
     {
-        Nameko.OnNamekoHarvested -= UpdateScore;
+        HavestEventManager.OnNamekoHarvested -= UpdateScore;
     }
 
     private void UpdateScore(int id,int Np, Transform spawnLocation)

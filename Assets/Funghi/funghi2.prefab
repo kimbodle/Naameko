@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wiltedNamekoPrefab: {fileID: 6231165488293426793, guid: 209259c57c85ee54eb1f6a7daa5bdeff, type: 3}
-  timeToWilt: 10
+  timeToWilt: 60
   id: 1
   Np: 10
 --- !u!95 &1296008147590273074

@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class WitheredNameko : MonoBehaviour
 {
-    //수확만 담당하도록 delegate - event 사용
-    public delegate void NamekoHarvestedDelegate(int id, int Np, Transform transform);
-    public static event NamekoHarvestedDelegate OnNamekoHarvested;
 
     private Animator animator;
 
@@ -28,7 +25,7 @@ public class WitheredNameko : MonoBehaviour
 
         //버튼 UI가 아닌 오브젝트이기 때문에 OnMouseDown()사용
         //이벤트 발생
-        OnNamekoHarvested?.Invoke(id, Np, transform);
+        HavestEventManager.HarvestNameko(id, Np, transform);
 
         Destroy(gameObject, 1.5f);
     }

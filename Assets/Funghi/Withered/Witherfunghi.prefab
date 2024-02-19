@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7253303077068071559}
   - component: {fileID: 1648236750266965595}
   - component: {fileID: -724097854638238128}
-  - component: {fileID: -2400559780978552343}
   - component: {fileID: 4199850899518801815}
   - component: {fileID: 3637657247738911326}
   m_Layer: 0
@@ -123,22 +122,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.021457076, y: -0.01480341}
   m_Size: {x: 0.8577563, y: 1.499173}
   m_Direction: 0
---- !u!114 &-2400559780978552343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6231165488293426793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d501df50d46d3241bc025e3e60fa053, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wiltedNamekoPrefab: {fileID: 0}
-  timeToWilt: 10
-  id: 5
-  Np: 0
 --- !u!95 &4199850899518801815
 Animator:
   serializedVersion: 5
