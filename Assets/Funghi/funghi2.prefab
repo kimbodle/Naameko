@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1369424079646227972}
   - component: {fileID: 540485309527604441}
   - component: {fileID: -1290074998008155442}
+  - component: {fileID: 1296008147590273074}
   m_Layer: 0
   m_Name: funghi2
   m_TagString: Untagged
@@ -133,5 +134,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d501df50d46d3241bc025e3e60fa053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wiltedNamekoPrefab: {fileID: 6231165488293426793, guid: 209259c57c85ee54eb1f6a7daa5bdeff, type: 3}
+  timeToWilt: 10
   id: 1
   Np: 10
+--- !u!95 &1296008147590273074
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3369431249665775259}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a5c591cb6a6d30e4684153cb0042cf29, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
