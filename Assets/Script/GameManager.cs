@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public Dictionary<int, int> NamekoDictionary = new Dictionary<int, int>();
-    private int totalNp = 0;
+    public int totalNp = 0;
 
     private void Awake()
     {

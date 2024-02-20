@@ -7,8 +7,11 @@ public class ItemManager : MonoBehaviour
     public bool is1 = false;
     public bool is15 = false;
     public bool SpawnOk = false;
+    public bool itemFull = false;
 
     public Timer timer;  // Timer 클래스의 인스턴스를 참조하는 필드 추가
+
+    public bool isButtonCoolingDown = false;
 
     public void Time1()
     {
@@ -27,6 +30,26 @@ public class ItemManager : MonoBehaviour
         // 슬라이더를 최대값으로 초기화
         timer.slTimer.value = timer.slTimer.maxValue;
     }
+
+    public void Item_Full()
+    {
+        if (GameManager.Instance.GetTotalNp() > 30)
+        {
+            if (isButtonCoolingDown)
+                return;
+
+            StartCoroutine(StartButtonCooldown());
+            isButtonCoolingDown = true;
+
+            itemFull = true;
+            GameManager.Instance.totalNp -= 30;
+        }
+        else
+        {
+            Debug.Log("돈 없음");
+        }
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -38,10 +61,11 @@ public class ItemManager : MonoBehaviour
     {
         SpawnOk = true;
     }
+    
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator StartButtonCooldown()
     {
-        
+        yield return new WaitForSeconds(5f);
+        isButtonCoolingDown = false;
     }
 }

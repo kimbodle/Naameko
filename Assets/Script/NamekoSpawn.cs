@@ -18,6 +18,7 @@ public class NamekoSpawn : MonoBehaviour
     [Header("Item")]
     public ItemManager itemManager;
     private float spawnTime = 0f;
+    private float minSpawnTime = 0f;
 
     [Header("NamekoSpawnProbability")]
     [SerializeField]
@@ -25,6 +26,8 @@ public class NamekoSpawn : MonoBehaviour
 
     [SerializeField]
     public GameObject parentObject; //하이라키
+
+    float Time = 180f;
 
     // Start is called before the first frame update
     void Start()
@@ -38,12 +41,19 @@ public class NamekoSpawn : MonoBehaviour
     {
         if (itemManager.is1)
         {
+            minSpawnTime = 3f;
             spawnTime = 10f;
         }
         else if (itemManager.is15)
         {
+            minSpawnTime = 5f;
             spawnTime = 60f;
         } //시간 아이템 마다 스폰 속도가 다름. 아이템에 따라 시간 조절
+
+        if (itemManager.itemFull)
+        {
+            StartCoroutine(ItemFullCoroutine());
+        }
 
     }
     void OnEnable()
@@ -63,7 +73,7 @@ public class NamekoSpawn : MonoBehaviour
         while (true)
         {
             //Debug.Log("스폰 시작");
-            float spawnInterval = Random.Range(3, spawnTime + 1); //10초부터 spawntime 사이
+            float spawnInterval = Random.Range(minSpawnTime, spawnTime); //10초부터 spawntime 사이
             Debug.Log(spawnInterval);
             yield return new WaitForSeconds(spawnInterval); //일정 시간 기다림
             //Debug.Log("스폰 기다림");
@@ -133,4 +143,17 @@ public class NamekoSpawn : MonoBehaviour
         }
         return probabilities.Length - 1;
     } //확률 값이 큰 인덱스일수록 더 자주 선택됨
+
+    IEnumerator ItemFullCoroutine()
+    {
+        while (Time > 0)
+        {
+            minSpawnTime = 0f;
+            spawnTime = 1f;
+            Time -= 1f;
+            yield return null;
+        }
+        itemManager.itemFull = false;
+        Time = 180f;
+    }
 }

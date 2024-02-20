@@ -51,6 +51,11 @@ public class ScoreBoard : MonoBehaviour
                 break;
         }
     }
+    public void TotalNpUpdate()
+    {
+        // GameManager에서 NP와 나메코 수확 개수를 가져와 표시
+        SumNpText.text = gameManager.GetTotalNp().ToString();
+    }
     // Start is called before the first frame update
     void Start()
     {
