@@ -1,6 +1,6 @@
 # Naameko
  
-#####24.02.13 - 24.02.21
+24.02.13 - 24.02.21
 ---
 1. Spawn + Probability
 2. Havest, Count
