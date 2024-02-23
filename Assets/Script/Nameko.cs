@@ -9,6 +9,7 @@ public class Nameko : MonoBehaviour
     public float timeToWilt = 10f;  // 시들기까지의 시간
 
     private Animator animator;
+    private AudioSource sound;
 
     [SerializeField]
     private int id;
@@ -17,6 +18,7 @@ public class Nameko : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        sound = GetComponent<AudioSource>();
         StartCoroutine(WiltAfterTime());
     }
 
@@ -41,6 +43,7 @@ public class Nameko : MonoBehaviour
         //버튼 UI가 아닌 오브젝트이기 때문에 OnMouseDown()사용
         //이벤트 발생
         HavestEventManager.HarvestNameko(id, Np, transform);
+        sound.Play();
 
         Destroy(gameObject,1.5f);
     }
